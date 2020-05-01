@@ -1,0 +1,11 @@
+<H3>Прогресс пользователя:</H3>
+
+
+    {% if user_data == 0 %}
+		    Данных нет ;)
+	{% else %}
+		  <p>Попытки {{user_data.trys}}</p>
+		  <p>Правильно {{user_data.r_answ}}</p>
+		  <p>Последний вопрос {{user_data.last_q}}</p>
+	{% endif %}
+

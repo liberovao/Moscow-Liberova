@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Список вопросов{% endblock %}
+
+{% block content %}
+<H1>Список вопросов:</H1>
+    {% if latest_list %}
+	    <ul type="circle">
+		{% for a in latest_list %}
+		    <li><a href='{% url 'DictIt:detail' a.quest_number %}'>Вопрос № {{a.quest_number}}: {{a.quest_text}}</a></li>
+		{% endfor %}
+		</ul>
+	{% else %}
+	    Вопросов нет ;)
+	{% endif %}
+
+{% endblock %}

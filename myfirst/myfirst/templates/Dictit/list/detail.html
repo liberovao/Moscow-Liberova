@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Уровень {{question.quest_level}} вопрос {{question.quest_number}}: {{question.quest_text}}{% endblock %}
+
+{% block content %}
+<h2>{{question.quest_text}}</h2>
+
+<form action='{% url 'DictIt:answer' question.quest_number%}' method='POST'>
+{% csrf_token %}
+	{% if answers.count == 0 %}
+		<input type="text" size="40" name="ans" >
+	{% else %}
+		{% for a in answers %}
+		<p><input name="ans" type="radio" value = {{a.answer_variant}}>{{a.answer_text}}</p>
+		{% endfor %}
+	{% endif %}
+<button type='submit'>Ответить</button>
+</form>
+
+{% endblock %}

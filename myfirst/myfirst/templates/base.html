@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+    <meta charset='UTF-8'>
+	<title>{% block title %}Словарь программиста{% endblock %}</title>
+</head>
+<body>
+	<ul class="sidebar-nav">
+   {% if user.is_authenticated %}
+     <li>User: {{ user.get_username }} (id: {{request.user.id}})</li>
+     <li><a href="{% url 'DictIt:logout'%}?next={{request.path}}">Logout</a></li>   
+   {% else %}
+     <li><a href="{% url 'DictIt:login'%}?next={{request.path}}">Login</a></li>   
+   {% endif %} 
+  </ul>
+	<ul class="sidebar-nav">
+    {% if user.is_authenticated %}
+		{% include "user_data.html" %}				
+    {% endif %} 
+   </ul>	
+   {% block content %}{% endblock %}
+  
+</body>
+</html>
